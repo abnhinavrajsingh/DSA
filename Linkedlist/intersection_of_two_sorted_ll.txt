@@ -1,0 +1,24 @@
+Node* findIntersec(Node* temp1,Node* temp2)
+{
+    if(temp1==NULL || temp2==NULL) return NULL;
+    
+    if(temp1->data<temp2->data){
+       Node* temp=findIntersection(temp1->next,temp2);
+       return temp;
+    }
+    else if(temp1->data>temp2->data){
+       Node* temp=findIntersection(temp1,temp2->next);
+       return temp;
+    }
+   else{
+       Node* newnode=new Node(temp1->data);
+       newnode->next=findIntersection(temp1->next,temp2->next);
+       return newnode;
+   }
+}
+
+
+Node* findIntersection(Node* head1, Node* head2)
+{
+    return findIntersec(head1,head2);
+}

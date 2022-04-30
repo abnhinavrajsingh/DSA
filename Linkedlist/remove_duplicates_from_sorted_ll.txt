@@ -1,0 +1,14 @@
+Node* removeduplicate(Node* head)
+{
+    if(head==NULL || head->next==NULL) return head;
+    head->next=removeduplicate(head->next);
+    if(head->data==head->next->data)
+        return head->next;
+    else
+        return head;
+}
+Node *removeDuplicates(Node *head)
+{
+ 
+ return removeduplicate(head);   ;
+}
