@@ -1,0 +1,38 @@
+#include <iostream>
+#include<vector>
+#include<bits/stdc++.h>
+using namespace std;
+
+void DFS(vector<bool> &visited, vector<int> graph[],int s)
+{
+visited[s] =true;
+for(auto x : graph[s])
+{
+    if(visited[x]==false)
+		DFS(visited,graph,x);
+}
+}
+int main() {
+	int n,e,u,v;
+	cin>>n>>e;
+	vector<int> graph[n+1];
+	while(e--)
+	{
+		
+		cin>>u>>v;
+		graph[u].push_back(v);
+		graph[v].push_back(u);
+	}
+	
+	int cc_count = 0;
+	vector<bool> visited(n+1,false);
+	for(int i=1;i<=n;++i)
+	{
+		if(visited[i]==false)
+		{
+			cc_count++;
+			DFS(visited,graph,i);
+		}	
+	}
+	cout<<cc_count;
+}
